@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Event_Management_system.Models.Sector>
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Form Elements</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        @if (TempData["EditMessage"] != null)
+        {
+            <div class="alert alert-success">
+
+                <strong>Success !</strong>@TempData["EditMessage"]
+            </div>
+
+        }
+
+        @if (TempData["DeleteMessage"] != null)
+        {
+            <div class="alert alert-danger">
+
+                <strong>Success !</strong>@TempData["DeleteMessage"]
+            </div>
+
+        }
+        @using (Html.BeginForm(FormMethod.Get))
+        {
+            <div class="row mb-3">
+                <div class="col-sm-7">
+                    <input type="search" class="form-control rounded" data-live-search="true" id="sreachvalue" name="sreachvalue" placeholder="Search By Name">
+                </div>
+                <div class="col-sm-3">
+                    <input type="submit" value="Search" class="btn btn-outline-primary" />
+                </div>
+                <div class="col-sm-2">
+                    <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+                </div>
+            </div>
+
+        }
+        <table class="table table-hover">
+
+
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" class="link-success" asp-route-id="@item.Sector_Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Sector_Id">Details</a> |
+                            <a asp-action="Delete" class="link-danger" asp-route-id="@item.Sector_Id">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </section>
+
+</main><!-- End #main -->

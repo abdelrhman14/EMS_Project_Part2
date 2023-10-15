@@ -1,0 +1,202 @@
+﻿@using Event_Management_system.Models
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Form Elements</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <form asp-action="Create" >
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Hotel Information</h5>
+
+                    <div class="row mt-3">
+                        <div class="col-sm-3">
+                            <label for="exampleFormControlInput1">Investor</label>
+                            <select id="Investor_Id" name="Investor_Id" class="form-control" asp-items="ViewBag.Investor_Id"></select>
+
+                        </div>
+                       
+                        <div class="col-sm-3">
+                            <label for="exampleFormControlInput1">Sector</label>
+                            <select id="searchsector" name="searchsector" class="form-control" asp-items="ViewBag.Sector_Id"></select>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="exampleFormControlInput1">From Date</label>
+                            <input type="datetime-local" class="form-control" data-live-search="true" id="start" name="start" placeholder="From Date">
+
+                        </div>
+                      
+                        <div class="col-sm">
+                            <label for="exampleFormControlInput1">End Date</label>
+                            <input type="datetime-local" class="form-control" data-live-search="true" id="end" name="end" placeholder="To Date">
+
+                        </div>
+                       
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-info waves-effect waves-light m-r-10" formaction="Information">Search</button>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+                    </div>
+
+            </div>
+        </div>
+            <!--    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10" formaction="Create">Create</button>-->
+
+
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    All Available Presenters
+                </h5>
+
+                    @{
+
+                        IEnumerable<Sector_Presenter> sp = ViewData["Sector_Presenter"] as IEnumerable<Sector_Presenter>;
+                        IEnumerable<Room> r = ViewData["Room"] as IEnumerable<Room>;
+                    }
+                    <table class="table table-responsive table-hover" >
+                    <thead>
+                        <tr>
+                            <th scope="col"><input type="checkbox" id="Presenter_Id"></th>
+                            <th scope="col">#</th>
+                                <th scope="col">Presenter No</th>
+                            <th scope="col">Presenter</th>
+                            <th scope="col">Sector</th>
+                            <th scope="col">From Date</th>
+                            <th scope="col">To Date</th>
+                                <th scope="col">Check Room</th>
+
+
+                        </tr>
+                        </thead>
+                    <tbody>
+
+                            @foreach (Sector_Presenter item in sp)
+                            {
+                           //    <tr onclick="location.href = '@(Url.Action("GetMatch", "Bookings", new { @searchpre =  @item.Sector_Presenter_Id }))'">
+                                <tr >
+                                    <td>
+                                        <input type="checkbox" id="Presenter_Id" name="Presenter_Id" value="@item.Sector_Presenter_Id" /> <!-- HOW SHOULD THIS BE RENDERED? -->
+                                    </td>
+                                <td>
+                                    #
+                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Sector_Presenter_Id)
+                                    </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Presenter.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sector.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FromDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ToDate)
+
+                                </td>
+                                 <td>
+                                        <a class="btn btn-outline-info" asp-route-Presenter_Id="@item.Sector_Presenter_Id">Available Rooms</a>
+
+                                    </td>
+                           </tr>
+
+                        }
+                    </tbody>
+                     </table>
+
+
+
+            </div>
+        </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        All Available Rooms
+                    </h5>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col"><input type="checkbox" id="Room_Id"></th>
+
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">From Date</th>
+                                <th scope="col">TO Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Hotel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Room item in r)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="Room_Id" name="Room_Id" value="@item.Room_Id" /> <!-- HOW SHOULD THIS BE RENDERED? -->
+                                        </td>
+                                        <td>
+                                            #
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FromDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ToDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Hotel.Name)
+                                        </td>
+                                       
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-info waves-effect waves-light m-r-10" formaction="Create">Submit</button>
+
+
+                </div>
+            </div>
+        </form>
+        <div class="row mt-3">
+            <div class="col-sm-10">
+                <input type="submit" value="Booking" class="btn btn-outline-primary" />
+            </div>
+
+        </div>
+    </section>
+
+</main><!-- End #main -->

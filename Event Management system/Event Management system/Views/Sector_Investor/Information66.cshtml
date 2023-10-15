@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "Information";
+}
+
+<h1>Information</h1>
+
+<h4>Sector_Presenter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            @using (Html.BeginForm(FormMethod.Post))
+                {
+            <form asp-action="Create">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                    <select class="form-control" asp-items="ViewBag.Investor_Id"></select>
+            </div>
+            <div class="form-group">
+                    <input type="datetime-local" class="form-control" data-live-search="true" id="start" name="start" placeholder="From Date">
+
+            </div>
+            <div class="form-group">
+                    <input type="datetime-local" class="form-control" data-live-search="true" id="end" name="end" placeholder="To Date">
+
+            </div>
+            <div class="form-group">
+                <select  class ="form-control" asp-items="ViewBag.Sector_Id"></select>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-outline-primary" />
+
+            </div>
+        </form>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">
+            All Available Presenters
+        </h5>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Presenter</th>
+                    <th scope="col">Sector</th>
+                    <th scope="col">From Date</th>
+                    <th scope="col">To Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Sector_Presenter item in Model)
+                {
+                    <tr>
+                        <td>
+                            #
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Presenter.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sector.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ToDate)
+
+                        </td>
+                        <td>
+                            <li>
+                                @Html.ActionLink("Rooms","GetMatch","Sector_Investor")
+                            </li>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

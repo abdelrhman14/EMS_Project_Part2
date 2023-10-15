@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>EMS_DS</DataSourceReference>
+      <CommandText>SELECT EMS_DB.dbo.Sector_Investors.Sector_Id,EMS_DB.dbo.Sector_Investors.Investor_Id, EMS_DB.dbo.Sector_Presenter.Presenter_Id,EMS_DB.dbo.Sector_Investors.FromDate, EMS_DB.dbo.Sector_Investors.ToDate
+FROM  EMS_DB.dbo.Sector_Investors
+INNER JOIN  EMS_DB.dbo.Sector_Presenter ON EMS_DB.dbo.Sector_Investors.Sector_Id = EMS_DB.dbo.Sector_Presenter.Sector_Id
+where EMS_DB.dbo.Sector_Investors.FromDate &lt; EMS_DB.dbo.Sector_Presenter.ToDate and EMS_DB.dbo.Sector_Investors.ToDate &gt; EMS_DB.dbo.Sector_Presenter.FromDate;</CommandText>
+    </Query>
+  </DataSet>
+</SharedDataSet>

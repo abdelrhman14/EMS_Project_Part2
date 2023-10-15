@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Event_Management_system.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Investor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Investor.Sector_Investors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Presenter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.Name)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Room.FromDate)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Room.ToDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Investor.Name)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Investor.Sector_Investors)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Presenter.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Name)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.FromDate)
+                </td
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.ToDate)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Booking_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Booking_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Booking_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

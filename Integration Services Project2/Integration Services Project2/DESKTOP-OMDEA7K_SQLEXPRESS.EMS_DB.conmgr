@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-OMDEA7K_SQLEXPRESS.EMS_DB"
+  DTS:DTSID="{0AFEB603-6EDF-4A60-80BE-2EA715D3B972}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-OMDEA7K\SQLEXPRESS;Initial Catalog=EMS_DB;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Integration Services Project2-{0AFEB603-6EDF-4A60-80BE-2EA715D3B972}DESKTOP-OMDEA7K\SQLEXPRESS.EMS_DB;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
